@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const singleCampus = () => {
+const SingleCampus = () => {
+  const { id } = useParams();
   const [campus, setCampus] = useState({
     name: '',
     imageUrl: '',
     address: '',
     description: '',
   });
+
+  useEffect(() => {
+    const fetchCampus = async () => {
+      const { data } = await axios.get(`/api/campuses/${id}`);
+      setCampus(data);
+    };
+    fetchCampus();
+  }, [id]);
 
   return (
     <div id="singleCampus">
@@ -18,4 +29,4 @@ const singleCampus = () => {
   );
 };
 
-export default singleCampus;
+export default SingleCampus;

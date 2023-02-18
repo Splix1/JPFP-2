@@ -6,7 +6,11 @@ import { prisma } from '..';
 
 campuses.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const allCampuses = await prisma.campus.findMany();
+    const allCampuses = await prisma.campus.findMany({
+      include: {
+        students: true,
+      },
+    });
     res.json(allCampuses);
   } catch (err) {
     next(err);

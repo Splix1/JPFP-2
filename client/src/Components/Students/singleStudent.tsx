@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-const singleStudent = () => {
+const SingleStudent = () => {
+  const { id } = useParams();
   const [student, setStudent] = useState({
     firstName: '',
     lastName: '',
@@ -8,6 +11,14 @@ const singleStudent = () => {
     imageUrl: '',
     gpa: 0,
   });
+
+  useEffect(() => {
+    const fetchStudent = async () => {
+      const { data } = await axios.get(`/api/students/${id}`);
+      setStudent(data);
+    };
+    fetchStudent();
+  }, [id]);
 
   return (
     <div id="singleStudent">
@@ -19,4 +30,4 @@ const singleStudent = () => {
   );
 };
 
-export default singleStudent;
+export default SingleStudent;

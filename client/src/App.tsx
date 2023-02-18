@@ -7,6 +7,8 @@ import NavBar from './Components/NavBar/navBar';
 import './App.css';
 import { Context } from './Context/ContextProvider';
 import axios from 'axios';
+import SingleStudent from './Components/Students/singleStudent';
+import SingleCampus from './Components/Campuses/singleCampus';
 
 function App() {
   const { setContext } = useContext(Context);
@@ -27,6 +29,8 @@ function App() {
         <Route path="/" element={<AllCampuses />} />
         <Route path="/campuses" element={<AllCampuses />} />
         <Route path="/students" element={<AllStudents />} />
+        <Route path="/students/:id" element={<SingleStudent />} />
+        <Route path="/campuses/:id" element={<SingleCampus />} />
       </Routes>
     </Router>
   );
