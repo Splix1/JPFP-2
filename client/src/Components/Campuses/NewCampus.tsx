@@ -15,6 +15,10 @@ function NewCampus() {
         .then((response) =>
           setContext({ ...context, campuses: [...campuses, response?.data] })
         )
+        .catch((err) => {
+          alert('Creation failed');
+          return;
+        })
     );
   }
 

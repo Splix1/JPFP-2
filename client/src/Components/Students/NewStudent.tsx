@@ -1,13 +1,23 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Student, initialStudentState } from '../../Context/@types.students';
+import { Context } from '../../Context/ContextProvider';
 
 function NewStudent() {
   const [newStudent, setNewStudent] = useState<Student>(initialStudentState);
+  const { context, setContext, students } = useContext(Context);
 
   async function createStudent(evt: any) {
     evt.preventDefault();
-    const { data } = await axios.post('/api/students', newStudent);
+    const postStudent = '/api/students';
+    import('axios')
+      .then((axios) => axios.default.post(postStudent, newStudent))
+      .then((response) =>
+        setContext({ ...context, students: [...students, response?.data] })
+      )
+      .catch((err) => {
+        alert('Creation failed');
+        return;
+      });
   }
 
   return (
