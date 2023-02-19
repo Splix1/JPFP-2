@@ -30,4 +30,33 @@ students.get(
   }
 );
 
+students.post('/', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { firstName, lastName, email, imageUrl, gpa } = req.body;
+
+    const newStudent = await prisma.student.create({
+      data: {
+        firstName,
+        lastName,
+        email,
+        imageUrl,
+        gpa,
+      },
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        imageUrl: true,
+        gpa: true,
+      },
+    });
+    res.json(newStudent);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = students;

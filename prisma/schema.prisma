@@ -17,8 +17,8 @@ model Student {
   email String @unique @db.VarChar(255)
   imageUrl String @default("https://cdn.discordapp.com/attachments/954370493501276170/1074898802655363092/585580325405458434.png")
   gpa Decimal @default(0.0)
-  campus Campus @relation(fields: [campusId], references: [id])
-  campusId Int
+  campus Campus? @relation(fields: [campusId], references: [id])
+  campusId Int?
 }
 
 model Campus {

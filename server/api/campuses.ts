@@ -34,4 +34,45 @@ campuses.get(
   }
 );
 
+campuses.post('/', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { name, imageUrl, address, description } = req.body;
+    const newCampus = await prisma.campus.create({
+      data: {
+        name,
+        imageUrl,
+        address,
+        description,
+      },
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        name: true,
+        imageUrl: true,
+        address: true,
+        description: true,
+      },
+    });
+    res.json(newCampus);
+  } catch (err) {
+    next(err);
+  }
+});
+
+campuses.delete(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const deletedUser = await prisma.campus.delete({
+        where: { id: +id },
+      });
+      res.json(deletedUser);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 module.exports = campuses;

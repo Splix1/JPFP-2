@@ -5,6 +5,8 @@ import { Campus } from './@types.campuses';
 type combinedContext = {
   students: Student[];
   campuses: Campus[];
+  setContext?: any;
+  context?: any;
 };
 
 export const Context = createContext<combinedContext>({} as combinedContext);

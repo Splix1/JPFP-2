@@ -8,6 +8,13 @@ export interface Campus {
   description: string;
 }
 
+export const initialCampusState: Campus = {
+  name: '',
+  imageUrl: '',
+  address: '',
+  description: '',
+};
+
 export type CampusContextType = {
   campuses: Campus[];
   addCampus: (campus: Campus) => void;

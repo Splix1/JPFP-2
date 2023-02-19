@@ -10,6 +10,14 @@ export interface Student {
   campusId?: number;
 }
 
+export const initialStudentState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  imageUrl: '',
+  gpa: 0,
+};
+
 export type StudentContextType = {
   students: Student[];
   addStudent: (student: Student) => void;
