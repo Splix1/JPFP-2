@@ -18,6 +18,7 @@ function NewStudent() {
         alert('Creation failed');
         return;
       });
+    setNewStudent(initialStudentState);
   }
 
   return (

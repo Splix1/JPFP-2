@@ -20,6 +20,7 @@ function NewCampus() {
           return;
         })
     );
+    setNewCampus(initialCampusState);
   }
 
   return (
