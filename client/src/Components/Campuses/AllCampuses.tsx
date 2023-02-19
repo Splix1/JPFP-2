@@ -7,14 +7,16 @@ import '../../App.css';
 function AllCampuses() {
   const { campuses, context, setContext } = useContext(Context);
 
-  function deleteCampus(id: number) {
-    const deleteCampus = `/api/campuses/${id}`;
+  function deleteCampus(campus: Campus) {
+    const deleteCampus = `/api/campuses/${campus.id}`;
     import('axios')
       .then((axios) => axios.default.delete(deleteCampus))
       .then((response) =>
         setContext({
           ...context,
-          campuses: campuses.filter((campus) => campus.id !== id),
+          campuses: campuses.filter(
+            (currentCampus) => currentCampus.id !== campus.id
+          ),
         })
       );
   }
@@ -33,7 +35,7 @@ function AllCampuses() {
             <div>{campus.name}</div>
             <div>{campus.address}</div>
             <div>{campus.description}</div>
-            <button>Delete</button>
+            <button onClick={() => deleteCampus(campus)}>Delete</button>
           </div>
         );
       })}

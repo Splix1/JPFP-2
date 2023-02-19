@@ -49,6 +49,7 @@ const ContextProvider = ({ children }) => {
   const value = {
     students: context.students,
     campuses: context.campuses,
+    context,
     addStudent,
     addCampus,
     setContext,
