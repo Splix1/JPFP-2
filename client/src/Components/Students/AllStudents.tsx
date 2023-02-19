@@ -5,8 +5,21 @@ import { useLocation } from 'react-router-dom';
 import NewStudent from './NewStudent';
 
 const AllStudents = () => {
-  const { students } = useContext(Context);
-  const location = useLocation();
+  const { students, context, setContext } = useContext(Context);
+
+  function deleteStudent(student: Student) {
+    const deleteRoute = `/api/students/${student.id}`;
+    import('axios')
+      .then((axios) => axios.default.delete(deleteRoute))
+      .then((response) =>
+        setContext({
+          ...context,
+          students: students.filter(
+            (currentStudent) => currentStudent.id !== student.id
+          ),
+        })
+      );
+  }
 
   return (
     <div id="students">
@@ -19,6 +32,7 @@ const AllStudents = () => {
             <div>{student.lastName}</div>
             <div>{student.email}</div>
             <div>{student.gpa}</div>
+            <button onClick={() => deleteStudent(student)}>Delete</button>
           </div>
         );
       })}

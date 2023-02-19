@@ -65,10 +65,10 @@ campuses.delete(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const deletedUser = await prisma.campus.delete({
+      await prisma.campus.delete({
         where: { id: +id },
       });
-      res.json(deletedUser);
+      res.send();
     } catch (err) {
       next(err);
     }

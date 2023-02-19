@@ -59,4 +59,21 @@ students.post('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+students.delete(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      await prisma.student.delete({
+        where: {
+          id: +id,
+        },
+      });
+      res.send();
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 module.exports = students;
