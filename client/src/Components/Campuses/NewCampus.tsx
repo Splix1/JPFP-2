@@ -25,6 +25,7 @@ function NewCampus() {
 
   return (
     <div id="add-campus-form">
+      New Campus
       <form onSubmit={createCampus}>
         <div>
           <div>Name</div>

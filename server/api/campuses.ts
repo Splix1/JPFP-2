@@ -75,4 +75,26 @@ campuses.delete(
   }
 );
 
+campuses.put(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { name, address } = req.body;
+      const updatedCampus = await prisma.campus.update({
+        where: {
+          id: +id,
+        },
+        data: {
+          name,
+          address,
+        },
+      });
+      res.json(updatedCampus);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 module.exports = campuses;

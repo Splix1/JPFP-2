@@ -3,6 +3,7 @@ import { Context } from '../../Context/ContextProvider';
 import { Campus } from '../../Context/@types.campuses';
 import NewCampus from './NewCampus';
 import '../../App.css';
+import UpdateCampus from './UpdateCampus';
 
 function AllCampuses() {
   const { campuses, context, setContext } = useContext(Context);
@@ -23,7 +24,10 @@ function AllCampuses() {
 
   return (
     <div id="campuses">
-      <NewCampus />
+      <div>
+        <NewCampus />
+        <UpdateCampus />
+      </div>
       {campuses?.map((campus: Campus) => {
         return (
           <div key={campus.id}>
