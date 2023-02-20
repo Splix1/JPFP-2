@@ -76,4 +76,28 @@ students.delete(
   }
 );
 
+students.put(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { firstName, lastName, imageUrl, gpa } = req.body;
+      const updatedStudent = await prisma.student.update({
+        where: {
+          id: +id,
+        },
+        data: {
+          firstName,
+          lastName,
+          imageUrl,
+          gpa,
+        },
+      });
+      res.json(updatedStudent);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 module.exports = students;

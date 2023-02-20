@@ -3,6 +3,7 @@ import { Context } from '../../Context/ContextProvider';
 import { Student } from '../../Context/@types.students';
 import { useLocation } from 'react-router-dom';
 import NewStudent from './NewStudent';
+import UpdateStudent from './UpdateStudent';
 
 const AllStudents = () => {
   const { students, context, setContext } = useContext(Context);
@@ -24,6 +25,7 @@ const AllStudents = () => {
   return (
     <div id="students">
       <NewStudent />
+      <UpdateStudent />
       {students?.map((student: Student) => {
         return (
           <div className="student" key={student.id}>

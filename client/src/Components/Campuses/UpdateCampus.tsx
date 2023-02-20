@@ -54,7 +54,7 @@ export default function UpdateCampus() {
             <div>
               <div>Name</div>
               <input
-                name="campus"
+                name="name"
                 defaultValue={updatedCampus?.name || ''}
                 onChange={(evt) =>
                   setUpdatedCampus({ ...updatedCampus, name: evt.target.value })
