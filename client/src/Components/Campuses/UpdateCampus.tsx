@@ -18,7 +18,7 @@ export default function UpdateCampus() {
     }
   }, [campusToUpdate]);
 
-  function updateCampus(evt: Event) {
+  function updateCampus(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     const updateCampusRoute = `/api/campuses/${updatedCampus.id}`;
     import('axios')
